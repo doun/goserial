@@ -72,24 +72,30 @@ import "io"
 //    c1.Baud = 115200
 //
 type Config struct {
-	Name string
-	Baud int
+    Name string
+    Baud int
 
-	// Size     int // 0 get translated to 8
-	// Parity   SomeNewTypeToGetCorrectDefaultOf_None
-	// StopBits SomeNewTypeToGetCorrectDefaultOf_1
+    // Size     int // 0 get translated to 8
+    // Parity   SomeNewTypeToGetCorrectDefaultOf_None
+    // StopBits SomeNewTypeToGetCorrectDefaultOf_1
 
-	// RTSFlowControl bool
-	// DTRFlowControl bool
-	// XONFlowControl bool
+    // RTSFlowControl bool
+    // DTRFlowControl bool
+    // XONFlowControl bool
 
-	// CRLFTranslate bool
-	// TimeoutStuff int
+    // CRLFTranslate bool
+    // TimeoutStuff int
+}
+
+type Cancel interface {
+    Cancel()
+    CancelRead()
+    CancelWrite()
 }
 
 // OpenPort opens a serial port with the specified configuration
 func OpenPort(c *Config) (io.ReadWriteCloser, error) {
-	return openPort(c.Name, c.Baud)
+    return openPort(c.Name, c.Baud)
 }
 
 // func Flush()
